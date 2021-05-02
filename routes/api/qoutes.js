@@ -5,9 +5,10 @@ const Quote = require('../../models/Quote');
 const Author = require('../../models/Author');
 const Category = require('../../models/Category');
 
+const getAuthor = require('../../middleware/getAuthor');
+const getCategory = require('../../middleware/getCategory');
 
-
-router.post('/', async (req, res) => {
+router.post('/', getAuthor, getCategory, async (req, res) => {
     try {
         const quote = new Quote({
             quote: req.body.quote,
