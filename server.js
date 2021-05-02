@@ -10,6 +10,9 @@ const PORT = process.env.PORT || 3000;
 // Connect Database
 connectDB(db);
 
+app.use(express.static('public'));
+// app.use(express.static('css'));
+// app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 app.options("*", (req, res, next) => {
@@ -26,10 +29,10 @@ app.use((req, res, next) => {
     next();
 });
 
-/* app.use("/api/quotes", require("./routes/api/quotes"));
+app.use("/api/quotes", require("./routes/api/quotes"));
 app.use("/api/authors", require("./routes/api/authors"));
 app.use("/api/categories", require("./routes/api/categories"));
- */
+
 app.get("/", (req, res) => {
     res.send("Hello World!");
 });
@@ -39,7 +42,4 @@ app.all("*", (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
-// app.use(express.static('public'));
-// app.use(express.static('css'));
-// app.use(express.urlencoded({ extended: false }));
 
